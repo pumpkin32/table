@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta chraset="utf-8">
+		<title>table</title>
+		<style>
+			html, body {
+				display:flex;
+				align-items:center;
+				justify-content:center;
+				flex-direction:column;
+				margin:0px;
+				padding:0px;
+				height:100%;
+			}
+			
+			table {
+				background-color:rgb(240, 240, 240);
+				border:0px;
+				border-spacing:0px;
+				border-collapse:collapse;
+			}
+			
+			td {
+				width:150px;
+				height:75px;
+				border:1px solid black;
+			}
+			
+			.small {
+				width:15px;
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		<table>
+			{% for i in press %}
+			<tr>
+				<td class="small">{{ forloop.counter }}</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			{% endfor %}
+		</table>
+		<form method="POST" action="ADD/">
+			{% csrf_token %}
+			<input type="submit" value="Добавить">
+		</form>
+		
+		<form method="POST" action="DEL/">
+			{% csrf_token %}
+			<input type="submit" value="Удалить">
+		</form>
+	</body>
+</html>
