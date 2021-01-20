@@ -1,20 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import db
+from django.urls import reverse
+from .models import  content, rubric
 
 def index(request):
-	press = db.objects.all()
-	return render(request, 'index.html', {"press":press})
+	db = rubric.objects.all()
+	return render(request, 'index.html', {'db':db})
 
-def ADD(request):
-	if request.method == "POST":
-		press = db()
-		press.content = None
-		press.save()
-		return HttpResponseRedirect("/")
-	
-def DEL(request):
-	if request.method == "POST":
-		press = db.objects.last()
-		press.delete()
-		return HttpResponseRedirect("/")
+def about(request, Title):
+	db = rubric.objects.get(title = '{0}'.format(Title))
+	DB = db.content_set.all()
+	return render(request, 'about.html', {'db':db, 'DB':DB})

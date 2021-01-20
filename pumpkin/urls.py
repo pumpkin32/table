@@ -19,7 +19,6 @@ from seed import views
 
 urlpatterns = [
 	path('', views.index),
-	path('DEL/', views.DEL),
-	path('ADD/', views.ADD),
+    path('<str:Title>/', views.about, name = 'about'),
     path('admin/', admin.site.urls),
 ]
